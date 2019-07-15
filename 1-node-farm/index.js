@@ -32,6 +32,7 @@ const http = require('http');
 // SERVER
 
 const server = http.createServer((req, res) => {
+  console.log(req);  // logs mammoth request object for viewing
   res.end('Hello from the server!');
 });
 
