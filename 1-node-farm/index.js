@@ -1,5 +1,6 @@
 const fs = require('fs');
 const http = require('http');
+const url = require('url');
 
 ////////////////////////////////
 // FILES
@@ -32,7 +33,8 @@ const http = require('http');
 // SERVER
 
 const server = http.createServer((req, res) => {
-  console.log(req);  // logs mammoth request object for viewing
+  // console.log(req);  // logs mammoth request object for viewing
+  console.log(req.url);  // will actually result in two requests: 1) URL path, and 2) favicon
   res.end('Hello from the server!');
 });
 
