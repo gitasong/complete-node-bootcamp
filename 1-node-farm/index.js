@@ -35,19 +35,19 @@ const url = require('url');
 const server = http.createServer((req, res) => {
   // console.log(req);  // logs mammoth request object for viewing
   console.log(req.url);  // will actually result in two requests: 1) URL path, and 2) favicon
+
+  const data = fs.readFileSync(`${__dirname}/starter/dev-data/data.json`, 'utf-8');
+  const dataObj = JSON.parse(data);
+
   const pathName = req.url;
   if (pathName === '/' || pathName === '/overview') {
     res.end('This is the OVERVIEW page');
   } else if (pathName === '/product') {
     res.end('This is the PRODUCT page');
   } else if (pathName === '/api') {
-    fs.readFile(`${__dirname}/starter/dev-data/data.json`, 'utf-8', (err, data) => {
-      if (err) console.error(err);
-      const productData = JSON.parse(data);
-      console.log(productData);
-      res.writeHead('200', {'Content-type': 'application/json'});
-      res.end(data);
-    });
+    res.writeHead('200', {'Content-type': 'application/json'});
+    // console.log(data);
+    res.end(data);
   } else {
     res.writeHead('404', {
       'Content-type': 'text/html',
